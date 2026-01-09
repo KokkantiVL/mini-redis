@@ -181,15 +181,3 @@ H hashkey f1:v1 f2:v2 # Hash
 - Values containing spaces have limited persistence support
 - Not compatible with RDB/AOF format
 
-## Contributing
-
-Contributions welcome! Please open an issue or submit a pull request.
-
-## License
-
-MIT License - see [LICENSE](LICENSE) for details.
-
-## Acknowledgments
-
-- Inspired by [Redis](https://redis.io/)
-- Built for learning database internals and systems programming
