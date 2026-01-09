@@ -1,0 +1,27 @@
+# Build artifacts
+build/
+*.o
+*.obj
+
+# Executable
+lite-kvstore
+lite-kvstore.exe
+
+# Database snapshots
+*.kvdb
+snapshot.*
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Debug
+*.dSYM/
+*.pdb
+
+# Logs
+*.log
