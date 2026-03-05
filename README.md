@@ -1,4 +1,4 @@
-# Lite KV Store
+# Mini Redis
 
 A lightweight, Redis-compatible key-value store implemented in C++17. This project demonstrates core concepts of database internals, network programming, and concurrent systems.
 
@@ -66,8 +66,8 @@ A lightweight, Redis-compatible key-value store implemented in C++17. This proje
 
 ### Compile
 ```bash
-git clone https://github.com/yourusername/lite-kvstore.git
-cd lite-kvstore
+git clone https://github.com/KokkantiVL/mini-redis.git
+cd mini-redis
 make
 ```
 
@@ -86,10 +86,10 @@ make clean
 ### Start the Server
 ```bash
 # Default port 6379
-./lite-kvstore
+./mini-redis
 
 # Custom port
-./lite-kvstore 6380
+./mini-redis 6380
 ```
 
 ### Connect with redis-cli
@@ -128,7 +128,7 @@ chmod +x tests/test_commands.sh
 
 ## Project Structure
 ```
-lite-kvstore/
+mini-redis/
 ├── include/
 │   ├── KVStore.h          # Data storage engine
 │   ├── CommandProcessor.h # RESP parser & command router
@@ -154,10 +154,10 @@ lite-kvstore/
 │ (Client)    │◀────│  (TCP/Threading) │◀────│ (Data)   │
 └─────────────┘     └──────────────────┘     └──────────┘
                             │
-                    ┌───────▼────────┐
+                    ┌───────▼──────-──┐
                     │ CommandProcessor│
                     │ (RESP Parser)   │
-                    └────────────────┘
+                    └───────────────-─┘
 ```
 
 ### Components
@@ -180,4 +180,3 @@ H hashkey f1:v1 f2:v2 # Hash
 - No transactions or pub/sub
 - Values containing spaces have limited persistence support
 - Not compatible with RDB/AOF format
-
