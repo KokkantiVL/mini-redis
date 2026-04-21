@@ -22,7 +22,6 @@ public:
     std::string getKeyType(const std::string& key);
     bool removeKey(const std::string& key);
     bool setExpiry(const std::string& key, int ttlSeconds);
-    void cleanupExpired();
     bool renameKey(const std::string& oldKey, const std::string& newKey);
 
     // List Operations
@@ -56,6 +55,9 @@ private:
     ~KVStore() = default;
     KVStore(const KVStore&) = delete;
     KVStore& operator=(const KVStore&) = delete;
+
+    // Caller must hold storeMutex_ before calling this.
+    void cleanupExpired();
 
     std::mutex storeMutex_;
     std::unordered_map<std::string, std::string> stringData_;
