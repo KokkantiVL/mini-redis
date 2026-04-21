@@ -72,17 +72,17 @@ void KVServer::start() {
     std::cout << "KV Server listening on port " << port_ << "\n";
 
     std::vector<std::thread> clientThreads;
-    CommandProcessor processor;
 
     while (isRunning_) {
         int clientSocket = accept(listenSocket_, nullptr, nullptr);
         if (clientSocket < 0) {
-            if (isRunning_) 
+            if (isRunning_)
                 std::cerr << "Error accepting connection\n";
             break;
         }
 
-        clientThreads.emplace_back([clientSocket, &processor](){
+        clientThreads.emplace_back([clientSocket](){
+            CommandProcessor processor;
             char buffer[1024];
             while (true) {
                 memset(buffer, 0, sizeof(buffer));
