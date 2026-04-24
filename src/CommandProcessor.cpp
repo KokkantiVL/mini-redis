@@ -117,10 +117,7 @@ static std::string cmdExpire(const std::vector<std::string>& args, KVStore& stor
         return "-ERR EXPIRE requires key and seconds\r\n";
     try {
         int ttl = std::stoi(args[2]);
-        if (store.setExpiry(args[1], ttl))
-            return "+OK\r\n";
-        else
-            return "-ERR Key not found\r\n";
+        return store.setExpiry(args[1], ttl) ? ":1\r\n" : ":0\r\n";
     } catch (const std::exception&) {
         return "-ERR Invalid expiration time\r\n";
     }
