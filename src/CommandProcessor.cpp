@@ -108,8 +108,10 @@ static std::string cmdType(const std::vector<std::string>& args, KVStore& store)
 static std::string cmdDel(const std::vector<std::string>& args, KVStore& store) {
     if (args.size() < 2)
         return "-ERR DEL requires key\r\n";
-    bool removed = store.removeKey(args[1]);
-    return ":" + std::to_string(removed ? 1 : 0) + "\r\n";
+    int count = 0;
+    for (size_t i = 1; i < args.size(); ++i)
+        if (store.removeKey(args[i])) ++count;
+    return ":" + std::to_string(count) + "\r\n";
 }
 
 static std::string cmdExpire(const std::vector<std::string>& args, KVStore& store) {
